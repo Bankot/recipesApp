@@ -3,7 +3,6 @@ const errorHandlerMiddleware = async (err, req, res, next) => {
 		statusCode: err.statusCode || 500,
 		msg: err.message || "Something went wrong try again later",
 	}
-
 	// SCHEMA ERROR LOGIC
 
 	if (err.message === "Document failed validation") {
@@ -18,7 +17,7 @@ const errorHandlerMiddleware = async (err, req, res, next) => {
 		customError.message = response
 		customError.statusCode = 400
 	}
-	return res.status(customError.statusCode).json({ msg: customError.message })
+	return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
 module.exports = errorHandlerMiddleware

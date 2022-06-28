@@ -1,13 +1,16 @@
 const express = require("express")
+const authMiddleware = require("../middleware/auth")
+const addRecipe = require("../controllers/recipesControllers/addRecipe")
+const {
+	registerController,
+	loginController,
+} = require("../controllers/usersControllers/index")
 
 const router = express.Router()
 
-router
-	.route("/api/recipes")
-	.get((req, res) => res.send("Hello its recipes get section"))
+router.route("/api/addRecipe").post(authMiddleware, addRecipe)
 
-router
-	.route("/api/user:id")
-	.get((req, res) => res.send("Hello its the users get section"))
+router.route("/api/userRegister").post(registerController)
+router.route("/api/userLogin").post(loginController)
 
 module.exports = router

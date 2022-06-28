@@ -7,13 +7,4 @@ const client = new MongoClient(uri, {
 	useUnifiedTopology: true,
 	serverApi: ServerApiVersion.v1,
 })
-client.connect((err) => {
-	const collection = client.db("recipeApp").collection("recipes")
-	console.log(collection.find({}).explain())
-	// perform actions on the collection object
-})
-const run = async () => {
-	const collection = await client.db("recipeApp").collection("recipes")
-	console.log(await collection.find({}).toArray())
-}
-run()
+module.exports = client.db("recipeApp")
