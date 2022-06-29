@@ -1,6 +1,10 @@
 const express = require("express")
 const authMiddleware = require("../middleware/auth")
-const addRecipe = require("../controllers/recipesControllers/addRecipe")
+const {
+	addRecipe,
+	addReview,
+	deleteReview,
+} = require("../controllers/recipesControllers/index")
 const {
 	registerController,
 	loginController,
@@ -8,9 +12,14 @@ const {
 
 const router = express.Router()
 
-router.route("/api/addRecipe").post(authMiddleware, addRecipe)
+router.route("/api/recipe").post(authMiddleware, addRecipe)
+router
+	.route("/api/review")
+	.post(authMiddleware, addReview)
+	.delete(authMiddleware, deleteReview)
 
 router.route("/api/userRegister").post(registerController)
 router.route("/api/userLogin").post(loginController)
+router.route
 
 module.exports = router

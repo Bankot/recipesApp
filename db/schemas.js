@@ -33,7 +33,7 @@ const recipeSchema = {
 	],
 	properties: {
 		ingredients: {
-			bsonType: "array",
+			bsonType: "object",
 		},
 		preparing: {
 			bsonType: "string",
@@ -44,8 +44,11 @@ const recipeSchema = {
 		createdBy: {
 			bsonType: "string",
 		},
-		reviewsId: {
+		creatorLogin: {
 			bsonType: "string",
+		},
+		reviewsId: {
+			bsonType: "array",
 		},
 		description: {
 			bsonType: "string",
@@ -63,6 +66,9 @@ const reviewSchema = {
 	bsonType: "object",
 	required: ["review", "createdAt", "rate", "createdBy"],
 	properties: {
+		creatorLogin: {
+			bsonType: "string",
+		},
 		review: {
 			bsonType: "string",
 		},
@@ -71,6 +77,8 @@ const reviewSchema = {
 		},
 		rate: {
 			bsonType: "int",
+			minimum: 0,
+			maximum: 5,
 		},
 		createdBy: {
 			bsonType: "string",
