@@ -4,6 +4,7 @@ const {
 	addRecipe,
 	addReview,
 	deleteReview,
+	deleteRecipe,
 } = require("../controllers/recipesControllers/index")
 const {
 	registerController,
@@ -12,7 +13,10 @@ const {
 
 const router = express.Router()
 
-router.route("/api/recipe").post(authMiddleware, addRecipe)
+router
+	.route("/api/recipe")
+	.post(authMiddleware, addRecipe)
+	.delete(authMiddleware, deleteRecipe)
 router
 	.route("/api/review")
 	.post(authMiddleware, addReview)

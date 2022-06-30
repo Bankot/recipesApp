@@ -3,7 +3,7 @@ const { ObjectId } = require("mongodb")
 const addRecipe = async (req, res, next) => {
 	const { ingredients, preparing, description, macro } = req.body
 	const { login, _id } = req.user
-	// if auth
+
 	if (login && _id && ingredients && preparing && description && macro) {
 		const { insertedId } = await db.collection("recipes").insertOne({
 			ingredients: ingredients,
@@ -15,6 +15,7 @@ const addRecipe = async (req, res, next) => {
 			reviewsId: [],
 			creatorLogin: login,
 		})
+		//add record to the author's profile
 		await db
 			.collection("users")
 			.updateOne(

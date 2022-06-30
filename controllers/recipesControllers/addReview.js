@@ -10,8 +10,15 @@ const addReview = async (req, res, next) => {
 		createdBy: _id,
 		reviewdRecipeId: reviewdRecipeId,
 	})
+	const recipeExists = await returnIfExists("recipes", {
+		_id: ObjectId(reviewdRecipeId),
+	})
 	if (exists) {
 		res.send("You have already posted a review: " + exists._id)
+		return
+	}
+	if (!recipeExists) {
+		res.send("Recipe doesnt exist!")
 		return
 	}
 	if (login && _id && review && rate && reviewdRecipeId) {
@@ -29,6 +36,9 @@ const addReview = async (req, res, next) => {
 				{ _id: ObjectId(reviewdRecipeId) },
 				{ $push: { reviewsId: insertedId.toString() } }
 			)
+
+		// add record to the author's profile
+
 		await db
 			.collection("users")
 			.updateOne(
