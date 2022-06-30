@@ -1,5 +1,5 @@
 const { ObjectId } = require("mongodb")
-const { returnIfExists, deleteFromParent } = require("../helpful-scripts")
+const { deleteFromParent } = require("../helpful-scripts")
 const db = require("../../db/dbConnect")
 
 // i know its looks complicated, will try to make code cleaner
@@ -8,7 +8,9 @@ const deleteRecipe = async (req, res, next) => {
 	const { recipeId } = req.body
 	const { _id } = req.user
 	// checking if recipe even exists
-	let recipe = await returnIfExists("recipes", { _id: ObjectId(recipeId) })
+	let recipe = await db
+		.collection("recipes")
+		.findOne({ _id: ObjectId(recipeId) })
 	if (recipe) {
 		if (recipe.createdBy === _id) {
 			const { createdBy, reviewsId } = recipe

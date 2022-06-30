@@ -1,16 +1,15 @@
 const { ObjectId } = require("mongodb")
 const db = require("../../db/dbConnect")
-const { returnIfExists } = require("../helpful-scripts")
 
 const addReview = async (req, res, next) => {
 	const { login, _id } = req.user
 	const { review, rate, reviewdRecipeId } = req.body
 
-	const exists = await returnIfExists("reviews", {
+	const exists = await db.collection("reviews").findOne({
 		createdBy: _id,
 		reviewdRecipeId: reviewdRecipeId,
 	})
-	const recipeExists = await returnIfExists("recipes", {
+	const recipeExists = await db.collection("recipes").findOne({
 		_id: ObjectId(reviewdRecipeId),
 	})
 	if (exists) {

@@ -2,12 +2,11 @@ const db = require("../../db/dbConnect")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
-const { returnIfExists } = require("../helpful-scripts")
 
 const registerController = async (req, res, next) => {
 	const { login, password } = req.body
 	if (typeof login === "string" && typeof password === "string") {
-		const exists = await returnIfExists("users", { login: login })
+		const exists = await db.collection("users").findOne({ login: login })
 		if (!exists) {
 			const hashedPassword = await bcrypt.hash(password, 10)
 

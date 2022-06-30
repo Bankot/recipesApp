@@ -1,16 +1,6 @@
 const db = require("../db/dbConnect")
 const { ObjectId } = require("mongodb")
-const returnIfExists = async (collection, searchObj) => {
-	if (searchObj)
-		try {
-			const record = await db.collection(collection).findOne(searchObj)
-			if (record) {
-				return record
-			} else return false
-		} catch (err) {
-			throw new Error("Error occured while checking if record exists!")
-		}
-}
+
 const deleteFromParent = async (
 	collection,
 	idOfElement,
@@ -28,8 +18,8 @@ const deleteFromParent = async (
 		.collection(collection)
 		.updateOne(
 			{ _id: ObjectId(idOfParentElement) },
-			{ $set: { [arrPropName]: array[arrPropName] } }
+			{ $set: { [arrPropName]: parent[arrPropName] } }
 		)
 	//setting new array without (idOfElement) in it
 }
-module.exports = { returnIfExists, deleteFromParent }
+module.exports = { deleteFromParent }

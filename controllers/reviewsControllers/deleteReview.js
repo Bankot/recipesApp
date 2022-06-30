@@ -1,12 +1,14 @@
 const { ObjectId } = require("mongodb")
-const { returnIfExists, deleteFromParent } = require("../helpful-scripts")
+const { deleteFromParent } = require("../helpful-scripts")
 const db = require("../../db/dbConnect")
 
 const deleteReview = async (req, res, next) => {
 	const { reviewId } = req.body
 	const { _id } = req.user
 	// checking if review exists
-	let review = await returnIfExists("reviews", { _id: ObjectId(reviewId) })
+	let review = await db
+		.collection("reviews")
+		.findOne({ _id: ObjectId(reviewId) })
 	if (review) {
 		if (review.createdBy === _id) {
 			const { reviewdRecipeId, createdBy } = review

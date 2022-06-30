@@ -5,7 +5,7 @@ const {
 	addReview,
 	deleteReview,
 	deleteRecipe,
-} = require("../controllers/recipesControllers/index")
+} = require("../controllers/index")
 const {
 	registerController,
 	loginController,
@@ -24,6 +24,5 @@ router
 
 router.route("/api/userRegister").post(registerController)
 router.route("/api/userLogin").post(loginController)
-router.route
 
 module.exports = router

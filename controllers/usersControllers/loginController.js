@@ -1,12 +1,12 @@
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const db = require("../../db/dbConnect")
 require("dotenv").config()
-const { returnIfExists } = require("../helpful-scripts")
 
 const loginController = async (req, res) => {
 	const { login, password } = req.body
 	if (typeof login === "string" && typeof password === "string") {
-		const user = await returnIfExists("users", { login: login })
+		const user = await db.collection("users").findOne({ login: login })
 		if (user && (await bcrypt.compare(password, user.password))) {
 			const token = jwt.sign(
 				{ _id: user._id.toString(), login: login },
