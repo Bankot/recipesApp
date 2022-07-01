@@ -12,10 +12,10 @@ const loginController = async (req, res) => {
 				{ _id: user._id.toString(), login: login },
 				process.env.JWT_SECRET
 			)
-			res.json({ status: "ok", data: token })
+			res.json({ status: "ok", token: token })
 		} else {
-			res.send("Not matching")
+			res.status(400).send("Credentials not matching")
 		}
-	} else res.send("Please provide all required information.")
+	} else res.status(400).send("Please provide all required information.")
 }
 module.exports = loginController
