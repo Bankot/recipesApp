@@ -1,0 +1,13 @@
+.navbar-ul {
+    display: flex;
+    flex-direction: row;
+}
+.navbar-item{
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.navbar-item:visited{
+    text-decoration: none;
+}
