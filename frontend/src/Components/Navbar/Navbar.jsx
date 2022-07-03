@@ -24,7 +24,9 @@ const Navbar = () => {
 	}
 	return (
 		<ul className='navbar-ul'>
-			<a className='navbar-item'>Home</a>
+			<Link className='navbar-item' to='/'>
+				Home
+			</Link>
 			{window.localStorage.getItem("authorization") ? (
 				<>
 					<Link className='navbar-item' to={`/user/${userId}`}>
