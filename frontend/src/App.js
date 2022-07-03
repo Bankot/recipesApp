@@ -1,6 +1,7 @@
 import Form from "./Components/Form/Form"
 import Navbar from "./Components/Navbar/Navbar"
 import Dashboard from "./Components/Dashboard/Dashboard"
+import RecipePage from "./Components/RecipePage/RecipePage"
 import { UserContextProvider } from "./Contexts/UserContext"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./app.css"
@@ -15,6 +16,7 @@ function App() {
 					<Route path='/' element={<Dashboard />} />
 					<Route path='/login' element={<Form />} />
 					<Route path='/user/:id' element={<UserPage />} />
+					<Route path='/recipe/:id' element={<RecipePage />} />
 					<Route path='/register' element={<Form register='true' />} />
 				</Routes>
 			</UserContextProvider>

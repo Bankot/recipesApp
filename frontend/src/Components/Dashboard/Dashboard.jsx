@@ -19,16 +19,7 @@ const Dashboard = () => {
 			}
 		}
 	}, [login])
-	return (
-		<Recipe
-			description='Papardelle alla arrabiatta'
-			creatorLogin='Belmondawg'
-			rating='4/5'
-			ingredients='Tomato, spaghetti'
-			preparing='Pasta klasta'
-			macro='500kcal'
-		/>
-	)
+	return <>wqe</>
 }
 
 export default Dashboard

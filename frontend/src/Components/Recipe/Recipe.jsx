@@ -1,4 +1,5 @@
 import "./Recipe.css"
+import { Link } from "react-router-dom"
 const Recipe = (props) => {
 	let ingredientsKeys = Object.keys(props.ingredients)
 	let ingredients = []
@@ -6,16 +7,16 @@ const Recipe = (props) => {
 		ingredients.push(`${n} : ${props.ingredients[n]}g `)
 	})
 	//MAKE IT SIMPLER
-	console.log(ingredients)
-	console.log(props.ingredients)
+
 	return (
 		<div className='recipe-div'>
-			<h2 className='recipe-title'>{props.description}</h2>
+			<Link to={`/recipe/${props._id}`} className='recipe-title'>
+				{props.description}
+			</Link>
 			<p className='recipe-ingredients'>{ingredients}</p>
 			<p className='recipe-creator'>{props.creatorLogin}</p>
 			<p className='recipe-rating'>{props.rating}</p>
 			<p className='recipe-preparing'>{props.preparing}</p>
-			<p className='recipe-macros'>{props.macro}</p>
 		</div>
 	)
 }

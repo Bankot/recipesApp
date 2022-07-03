@@ -29,7 +29,6 @@ const recipeSchema = {
 		"createdBy",
 		"reviewsId",
 		"description",
-		"macro",
 	],
 	properties: {
 		ingredients: {
@@ -52,9 +51,6 @@ const recipeSchema = {
 		},
 		description: {
 			bsonType: "string",
-		},
-		macro: {
-			bsonType: "object",
 		},
 		rating: {
 			bsonType: "int",

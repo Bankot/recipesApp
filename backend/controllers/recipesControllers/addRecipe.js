@@ -4,7 +4,7 @@ const addRecipe = async (req, res, next) => {
 	const { ingredients, preparing, description, macro } = req.body
 	const { login, _id } = req.user
 
-	if (login && _id && ingredients && preparing && description && macro) {
+	if (login && _id && ingredients && preparing && description) {
 		const { insertedId } = await db.collection("recipes").insertOne({
 			ingredients: ingredients,
 			preparing: preparing,
