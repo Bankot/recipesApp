@@ -15,13 +15,16 @@ const registerController = async (req, res, next) => {
 		if (!exists) {
 			const hashedPassword = await bcrypt.hash(password, 10)
 
-			const { insertedId } = await db.collection("users").insertOne({
-				login: login,
-				password: hashedPassword,
-				createdAt: new Date(),
-				recipesId: [],
-				reviewsId: [],
-			})
+			const { insertedId } = await db
+				.collection("users")
+				.insertOne({
+					login: login,
+					password: hashedPassword,
+					createdAt: new Date(),
+					recipesId: [],
+					reviewsId: [],
+				})
+				.catch((err) => next(err))
 			const token = jwt.sign(
 				{ _id: insertedId.toString(), login: login },
 				process.env.JWT_SECRET

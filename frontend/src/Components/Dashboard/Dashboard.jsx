@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import jwt_decode from "jwt-decode"
+import Recipe from "../Recipe/Recipe"
 
 const Dashboard = () => {
 	const data = window.localStorage.getItem("authorization")
@@ -19,11 +20,14 @@ const Dashboard = () => {
 		}
 	}, [login])
 	return (
-		<h1>
-			{userId
-				? `Hello ${login}.`
-				: `To view any content please Register or Log in.`}
-		</h1>
+		<Recipe
+			description='Papardelle alla arrabiatta'
+			creatorLogin='Belmondawg'
+			rating='4/5'
+			ingredients='Tomato, spaghetti'
+			preparing='Pasta klasta'
+			macro='500kcal'
+		/>
 	)
 }
 

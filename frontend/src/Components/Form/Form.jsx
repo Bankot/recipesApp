@@ -1,6 +1,6 @@
-import { useState, useRef, useId } from "react"
+import { useState, useRef, useId, useContext } from "react"
 import "./form.css"
-
+import { UserContext } from "../../Contexts/UserContext"
 const axios = require("axios")
 
 const Form = (props) => {
@@ -9,6 +9,7 @@ const Form = (props) => {
 	const password = useRef(null)
 	const rpassword = useRef(null)
 	const id = useId()
+	const { setToken } = useContext(UserContext)
 
 	const submitHandler = (e) => {
 		localStorage.setItem("authorization", null)
@@ -32,6 +33,7 @@ const Form = (props) => {
 					localStorage.setItem("authorization", "Bearer " + response.data.token)
 					axios.defaults.headers.common["authorization"] =
 						"Bearer " + response.data.token
+					setToken(`Bearer   ${response.data.token}`)
 					window.location.href = "/"
 				})
 				.catch((err) => setMessage(err.response.data))
@@ -51,6 +53,7 @@ const Form = (props) => {
 				placeholder='Login'></input>
 			<label htmlFor={`${id}-password`}>Password:</label>
 			<input
+				type='password'
 				ref={password}
 				className='form-input'
 				id={`${id}-password`}
@@ -59,6 +62,7 @@ const Form = (props) => {
 				<>
 					<label htmlFor={`${id}-rpassword`}>Repeat Password:</label>
 					<input
+						type='password'
 						ref={rpassword}
 						className='form-input'
 						id={`${id}-rpassword`}

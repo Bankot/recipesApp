@@ -6,7 +6,9 @@ const errorHandlerMiddleware = async (err, req, res, next) => {
 	// SCHEMA ERROR LOGIC
 	console.log(`==================ERROR==========================
 	${err}`)
-
+	if (err.statusCode == 404) {
+		res.send("Not found!")
+	}
 	if (err.message === "Document failed validation") {
 		let response = ""
 		const errInfo =

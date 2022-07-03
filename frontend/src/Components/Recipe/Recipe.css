@@ -1,0 +1,22 @@
+.recipe-div{
+    display: flex;
+    flex-direction: column;
+}
+.recipe-title{
+ color: red;
+}
+.recipe-creator{
+ color: blue;
+}
+.recipe-rating{
+color: green;
+}
+.recipe-ingredients{
+color: grey;
+}
+.recipe-preparing{
+color: orange;
+}
+.recipe-macros{
+color: blueviolet;
+}
