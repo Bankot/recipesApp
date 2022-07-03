@@ -6,6 +6,7 @@ const {
 	deleteReview,
 	deleteRecipe,
 	getUser,
+	getRecipe,
 } = require("../controllers/index")
 const {
 	registerController,
@@ -18,13 +19,14 @@ router
 	.route("/api/recipe")
 	.post(authMiddleware, addRecipe)
 	.delete(authMiddleware, deleteRecipe)
+
+router.route("/api/recipe/:id").get(getRecipe)
+
 router
 	.route("/api/review")
 	.post(authMiddleware, addReview)
 	.delete(authMiddleware, deleteReview)
-
 router.route("/api/user/:id").get(getUser)
-
 router.route("/api/userRegister").post(registerController)
 router.route("/api/userLogin").post(loginController)
 

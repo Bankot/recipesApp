@@ -16,7 +16,7 @@ const getUser = async (req, res, next) => {
 		res.send(user)
 		return
 	} else {
-		res.status(404).send("No matches!")
+		res.status(404).send("NOT FOUND!")
 	}
 }
 module.exports = getUser
