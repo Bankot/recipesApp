@@ -1,0 +1,15 @@
+.AddReview-container{
+    margin: auto;
+    width: 80%;
+}
+.AddReview-span{
+    
+    border: solid black 1px;
+    min-height: 75px;
+    outline:none;
+    padding: 10px;
+    display: block;
+}
+.AddReview-button{
+    padding: 10px;
+}

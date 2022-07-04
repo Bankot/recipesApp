@@ -22,18 +22,8 @@ const userSchema = {
 
 const recipeSchema = {
 	bsonType: "object",
-	required: [
-		"ingredients",
-		"preparing",
-		"createdAt",
-		"createdBy",
-		"reviewsId",
-		"description",
-	],
+	required: ["preparing", "createdAt", "createdBy", "reviewsId", "title"],
 	properties: {
-		ingredients: {
-			bsonType: "object",
-		},
 		preparing: {
 			bsonType: "string",
 		},
@@ -49,7 +39,7 @@ const recipeSchema = {
 		reviewsId: {
 			bsonType: "array",
 		},
-		description: {
+		title: {
 			bsonType: "string",
 		},
 		rating: {

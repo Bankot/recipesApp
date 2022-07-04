@@ -13,11 +13,11 @@ const addReview = async (req, res, next) => {
 		_id: ObjectId(reviewdRecipeId),
 	})
 	if (exists) {
-		res.send("You have already posted a review: " + exists._id)
+		res.status(400).send("You have already posted a review: " + exists._id)
 		return
 	}
 	if (!recipeExists) {
-		res.send("Recipe doesnt exist!")
+		res.status(400).send("Recipe doesnt exist!")
 		return
 	}
 	if (login && _id && review && rate && reviewdRecipeId) {
@@ -45,6 +45,6 @@ const addReview = async (req, res, next) => {
 				{ $push: { reviewsId: insertedId.toString() } }
 			)
 		res.send("Succesfully added a review")
-	} else res.send("Please provide all needed data!")
+	} else res.status(400).send("Please provide all needed data!")
 }
 module.exports = addReview

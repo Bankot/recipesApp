@@ -16,7 +16,6 @@ const UserPage = () => {
 				setUser(res.data)
 				if (res.data.recipesId) {
 					res.data.recipesId.forEach((elem) => {
-						console.log(elem)
 						axios
 							.get(`http://localhost:5000/api/recipe/${elem}`)
 							.then((res) => {

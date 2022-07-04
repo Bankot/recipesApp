@@ -1,0 +1,15 @@
+.AddRecipe-container{
+    margin: auto;
+    width: 30%;
+}
+.AddRecipe-span{
+    
+    border: solid black 1px;
+    min-height: 75px;
+    outline:none;
+    padding: 10px;
+    display: block;
+}
+.AddRecipe-button{
+    padding: 10px;
+}

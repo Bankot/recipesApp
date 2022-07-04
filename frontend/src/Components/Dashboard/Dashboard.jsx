@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import jwt_decode from "jwt-decode"
-import Recipe from "../Recipe/Recipe"
+import AddRecipe from "../AddRecipe/AddRecipe"
 
 const Dashboard = () => {
 	const data = window.localStorage.getItem("authorization")
@@ -19,7 +19,7 @@ const Dashboard = () => {
 			}
 		}
 	}, [login])
-	return <>wqe</>
+	return <AddRecipe />
 }
 
 export default Dashboard

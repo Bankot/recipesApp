@@ -17,8 +17,9 @@ const deleteReview = async (req, res, next) => {
 			await deleteFromParent("users", reviewId, createdBy, "reviewsId")
 			// deleting review
 			await db.collection("reviews").deleteOne({ _id: ObjectId(reviewId) })
-		} else res.send("You are not owner, so you can't delete this!")
-	} else res.send("No reviews matching this call")
+			res.send("Succesfully deleted a review.")
+		} else res.status(400).send("You are not owner, so you can't delete this!")
+	} else res.status(400).send("No reviews matching this call")
 }
 
 module.exports = deleteReview

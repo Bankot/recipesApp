@@ -1,15 +1,13 @@
 const db = require("../../db/dbConnect")
 const { ObjectId } = require("mongodb")
 const addRecipe = async (req, res, next) => {
-	const { ingredients, preparing, description, macro } = req.body
+	const { preparing, title } = req.body
 	const { login, _id } = req.user
 
-	if (login && _id && ingredients && preparing && description) {
+	if (login && _id && preparing && title) {
 		const { insertedId } = await db.collection("recipes").insertOne({
-			ingredients: ingredients,
 			preparing: preparing,
-			description: description,
-			macro: macro,
+			title: title,
 			createdAt: new Date(),
 			createdBy: _id,
 			reviewsId: [],
@@ -22,7 +20,7 @@ const addRecipe = async (req, res, next) => {
 				{ _id: ObjectId(_id) },
 				{ $push: { recipesId: insertedId.toString() } }
 			)
-		res.send("Adding recipe succesful!" + description)
-	} else res.send("Provide all needed informations!")
+		res.send({ msg: "Adding recipe succesfull", recipeId: insertedId })
+	} else res.status(400).send("Provide all needed informations!")
 }
 module.exports = addRecipe
