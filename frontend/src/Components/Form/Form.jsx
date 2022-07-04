@@ -12,8 +12,7 @@ const Form = (props) => {
 	const { setToken } = useContext(UserContext)
 
 	const submitHandler = (e) => {
-		localStorage.setItem("authorization", null)
-		if (login.current.value && password.current.value) {
+		if (login.current.value !== null && password.current.value !== null) {
 			setMessage(null)
 			e.preventDefault()
 			if (props.register) {

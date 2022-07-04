@@ -5,7 +5,12 @@ require("dotenv").config()
 
 const loginController = async (req, res) => {
 	const { login, password } = req.body
-	if (typeof login === "string" && typeof password === "string") {
+	if (
+		typeof login === "string" &&
+		typeof password === "string" &&
+		login &&
+		password
+	) {
 		const user = await db.collection("users").findOne({ login: login })
 		if (user && (await bcrypt.compare(password, user.password))) {
 			const token = jwt.sign(
